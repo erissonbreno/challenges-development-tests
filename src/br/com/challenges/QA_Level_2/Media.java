@@ -25,25 +25,27 @@ public class Media {
         double nota2 = input.nextDouble();
 
         while (nota1 > 10) {
-            System.out.println("1st note is bigger than 10, please type again: ");
+            System.out.println("ERROR: 1st note is bigger than 10, please type again: ");
             nota1 = input.nextDouble();
         }
 
         while (nota2 > 10) {
-            System.out.println("2nd note is bigger than 10, please type again: ");
+            System.out.println("ERROR: 2nd note is bigger than 10, please type again: ");
             nota2 = input.nextDouble();
         }
+        mediaCalculate(nota1, nota2);
+    }
 
+    public static String mediaCalculate (double nota1, double nota2) {
         NumberFormat nf = NumberFormat.getInstance(new Locale("en", "US"));
         nf.setMaximumFractionDigits(5);
         DecimalFormat df = (DecimalFormat) nf;
         df.applyPattern("0.00000");
 
-
         double media = ((nota1 * 3.5) + (nota2 * 7.5)) / 11;
         var mediaPresentation = "MEDIA = " + nf.format(media);
-
         System.out.println(mediaPresentation);
         System.out.println("------------------------------");
+        return mediaPresentation;
     }
 }
