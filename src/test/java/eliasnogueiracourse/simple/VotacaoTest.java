@@ -1,5 +1,8 @@
 package eliasnogueiracourse.simple;
 
+import categories.PrincipalFlow;
+import categories.Smoke;
+import org.junit.experimental.categories.Category;
 import org.junit.jupiter.api.Test;
 
 import static eliasnogueiracourse.Votacao.podeVotar;
@@ -9,6 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class VotacaoTest {
 
     @Test
+    @Category(Smoke.class)
     public void whenAgeEquals15CanNotVote(){
         String name = "Maria";
         int bornYear = retornaAnoAtual() - 15;
@@ -19,6 +23,7 @@ public class VotacaoTest {
     }
 
     @Test
+    @Category(PrincipalFlow.class)
     public void whenAgeEquals16OptionalVote() {
         String name = "Rodrigo";
         int bornYear = retornaAnoAtual() - 16;
