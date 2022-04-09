@@ -7,18 +7,29 @@ import java.util.Vector;
 import java.util.stream.IntStream;
 
 public class OrdinationOddEven {
+
+    static Scanner inputs = new Scanner(System.in);
+    static Scanner firstNumber = new Scanner(System.in);
+    static int qttInputs = 0;
+
     public static void main(String[] args) {
-        Scanner inputs = new Scanner(System.in);
         System.out.println("Enter how many numbers do you want ordinate: ");
 
-        int qttInputs = inputs.nextInt();
+        ordinationOddEven(getQttInputs());
+    }
+
+    public static Vector ordinationOddEven(int quantity) {
 
         Vector oddNumbers = new Vector(0);
         Vector evenNumbers = new Vector(0);
 
-        for (int i = 0; i < qttInputs; i++) {
+        for (int i = 0; i < getQttInputs(); i++) {
             int number = inputs.nextInt();
 
+            while (number > 10000 || number < 1) {
+                System.out.println("The number must be in range 0 < number < 10001!");
+                number = inputs.nextInt();
+            }
             if (number % 2 == 0) {
                 oddNumbers.add(number);
             } else {
@@ -26,16 +37,30 @@ public class OrdinationOddEven {
             }
         }
 
-        System.out.println("===================================");
+        System.out.println("================ORGANIZING================");
 
-        Collections.sort(oddNumbers);
-        Collections.reverse(Arrays.asList(evenNumbers));
-//        ArrayUtils
+        organizingEvenInAscendantOrderAndOddInDescendantOrder(oddNumbers, evenNumbers);
 
-        oddNumbers.addAll(evenNumbers);
+        return oddNumbers;
+    }
 
-        for (int i = 0; i < oddNumbers.size(); i++) {
-            System.out.println(oddNumbers.get(i));
+    public static int getQttInputs() {
+        if (qttInputs == 0) {
+            qttInputs = firstNumber.nextInt();
+            System.out.println("Type one number per line:");
+        }
+        return qttInputs;
+    }
+
+    public static void organizingEvenInAscendantOrderAndOddInDescendantOrder(Vector odd, Vector even) {
+        Collections.sort(odd);
+        Collections.sort(even);
+        Collections.reverse(even);
+
+        odd.addAll(even);
+
+        for (int i = 0; i < odd.size(); i++) {
+            System.out.println(odd.get(i));
         }
     }
 }
